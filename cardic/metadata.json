@@ -1,0 +1,6 @@
+{
+  "name": "Cardiac AI 3D — Syntax Squad",
+  "description": "An interactive 3D cardiovascular education platform featuring real-time anatomical heart modeling, blood flow simulation, dynamic hemodynamics, ECG monitor, and CardioAI Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

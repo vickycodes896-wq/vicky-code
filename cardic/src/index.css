@@ -1,0 +1,524 @@
+@import "tailwindcss";
+
+/* =============================================
+   THEME VARIABLES — Exact user reference colors
+   ============================================= */
+:root {
+  /* Dark Mode Defaults (Matching user reference dark IDE UI) */
+  --bg-primary: #07100F;
+  --bg-secondary: #0D1C1A;
+  --bg-tertiary: #081514;
+  --bg-card: #0D1C1A;
+  --bg-input: #122422;
+  --bg-sidebar: #0A1615;
+
+  --border-default: #183834;
+  --border-subtle: #142B28;
+  --border-hover: #10B981;
+
+  --text-primary: #F0FDF4;
+  --text-secondary: #8DA9A5;
+  --text-muted: #5B7773;
+
+  --accent-cyan: #10B981;
+  --accent-mint: #2ED89B;
+  --accent-teal: #2EC4B6;
+  --accent-coral: #F43F5E;
+  --accent-green: #10B981;
+  --warning: #F59E0B;
+
+  --shadow-card: 0 8px 30px -4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.2);
+  --shadow-glow-intense: 0 0 40px rgba(16, 185, 129, 0.35);
+
+  /* Scrollbars */
+  --scrollbar-track: #081514;
+  --scrollbar-thumb: #183834;
+  --scrollbar-thumb-hover: #10B981;
+
+  color-scheme: dark;
+}
+
+/* =============================================
+   LIGHT THEME (Matching user reference light IDE UI)
+   ============================================= */
+html.light {
+  --bg-primary: #F8FAF9;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F4F7F6;
+  --bg-card: #FFFFFF;
+  --bg-input: #F1F5F4;
+  --bg-sidebar: #FFFFFF;
+
+  --border-default: #E2E8E5;
+  --border-subtle: #EDF2F0;
+  --border-hover: #10B981;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #8A9FA8;
+
+  --accent-cyan: #059669;
+  --accent-mint: #10B981;
+  --accent-teal: #0D9488;
+  --accent-coral: #E11D48;
+  --accent-green: #059669;
+  --warning: #F59E0B;
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.15);
+
+  --scrollbar-track: #EDF2F0;
+  --scrollbar-thumb: #CBD5E1;
+  --scrollbar-thumb-hover: #94A3B8;
+
+  color-scheme: light;
+}
+
+/* =============================================
+   BASE RESET & BODY
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  /* Subtle emerald vignette background matching reference */
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 45% at 92% 90%, rgba(16, 185, 129, 0.10) 0%, transparent 60%),
+    radial-gradient(circle, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+html.light body {
+  background-color: #F8FAF9;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 65%),
+    radial-gradient(circle, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px;
+}
+
+/* =============================================
+   CUSTOM SCROLLBARS
+   ============================================= */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* =============================================
+   TYPOGRAPHY
+   ============================================= */
+.font-sans {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Source Code Pro', 'JetBrains Mono', monospace;
+}
+
+.font-tech {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* =============================================
+   THEME-AWARE UTILITY CLASSES
+   ============================================= */
+.bg-app-primary   { background-color: var(--bg-primary); }
+.bg-app-secondary { background-color: var(--bg-secondary); }
+.bg-app-tertiary  { background-color: var(--bg-tertiary); }
+.bg-app-card      { background-color: var(--bg-card); }
+.bg-app-input     { background-color: var(--bg-input); }
+
+.border-app        { border-color: var(--border-default); }
+.border-app-subtle { border-color: var(--border-subtle); }
+
+.text-app-primary   { color: var(--text-primary); }
+.text-app-secondary { color: var(--text-secondary); }
+.text-app-muted     { color: var(--text-muted); }
+
+.text-accent-cyan  { color: var(--accent-cyan); }
+.text-accent-coral { color: var(--accent-coral); }
+.text-accent-green { color: var(--accent-green); }
+
+/* =============================================
+   CARD COMPONENT
+   ============================================= */
+.app-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.app-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow), var(--shadow-card);
+}
+
+/* =============================================
+   3D UI & TACTILE COMPONENTS (User reference style)
+   ============================================= */
+/* =============================================
+   3D UI & TACTILE COMPONENTS (User reference style)
+   ============================================= */
+.card-3d {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-bottom: 4px solid #07251f;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.light .card-3d {
+  border-bottom: 4px solid #D1D5DB !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Light mode: button bottom borders are white, card bottom borders match subtle border */
+html.light [class*="border-b-[#07241e]"],
+html.light [class*="border-b-[#061e19]"],
+html.light [class*="border-b-[#092822]"] {
+  border-bottom-color: #FFFFFF !important;
+}
+
+html.light [class*="border-b-[#07251f]"],
+html.light [class*="border-b-teal-950"],
+html.light [class*="border-b-rose-950"],
+html.light [class*="border-b-indigo-950"] {
+  border-bottom-color: #E2E8E5 !important;
+}
+
+.card-3d:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  border-bottom: 4px solid #10B981;
+  box-shadow: 0 10px 28px -2px rgba(0, 0, 0, 0.6), 0 0 24px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+html.light .card-3d:hover {
+  border-color: #10B981;
+  border-bottom: 4px solid #059669;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.1), 0 0 16px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-default);
+  border-bottom: 3.5px solid #092822;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+html.light .btn-3d {
+  background-color: #FFFFFF;
+  border-color: #E2E8E5;
+  border-bottom: 3.5px solid #FFFFFF !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-3d:hover {
+  transform: translateY(-1.5px);
+  border-color: #10B981;
+  border-bottom: 3.5px solid #059669;
+  color: #10B981;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html.light .btn-3d:hover {
+  border-color: #10B981;
+  border-bottom: 3.5px solid #059669;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.btn-3d:active {
+  transform: translateY(2px);
+  border-bottom: 1.5px solid #059669;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d-primary {
+  background: linear-gradient(180deg, #10B981, #059669) !important;
+  border: 1px solid #10B981 !important;
+  border-bottom: 3.5px solid #047857 !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn-3d-primary:hover {
+  background: linear-gradient(180deg, #34D399, #059669) !important;
+  border-color: #34D399 !important;
+  border-bottom: 3.5px solid #047857 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+.btn-3d-primary:active {
+  transform: translateY(2px);
+  border-bottom: 1.5px solid #047857 !important;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* 3D Round Arrow Action Button (From user reference image) */
+.btn-3d-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-tertiary);
+  border: 1.5px solid var(--border-default);
+  border-bottom: 3px solid #082620;
+  color: var(--accent-green);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+html.light .btn-3d-action {
+  background-color: #FFFFFF;
+  border-color: #E2E8E5;
+  border-bottom: 3px solid #CBD5E1;
+  color: #059669;
+}
+
+.btn-3d-action:hover {
+  transform: translateY(-1.5px);
+  border-color: #10B981;
+  border-bottom: 3px solid #059669;
+  background-color: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+  color: #10B981;
+}
+
+.btn-3d-action:active {
+  transform: translateY(1.5px);
+  border-bottom: 1.5px solid #059669;
+}
+
+/* Pill Tabs matching reference (Description, solution.py, Output) */
+.tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border-default);
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.2);
+}
+
+html.light .tab-pill {
+  background-color: #FFFFFF;
+  border-color: #E2E8E5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.tab-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  transform: translateY(-0.5px);
+}
+
+.tab-pill-active {
+  border: 1.5px solid #10B981 !important;
+  color: #10B981 !important;
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Floating bottom-left theme toggle button matching reference */
+.floating-theme-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 50;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background-color: #10B981;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.floating-theme-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  background-color: #059669;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.floating-theme-btn:active {
+  transform: scale(0.95);
+}
+
+/* =============================================
+   MAGIC UI — THEME TOGGLE BUTTON
+   ============================================= */
+.theme-toggle-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  border-radius: 9999px;
+  border: 2px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.theme-toggle-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-green), 0 0 0 5px transparent;
+}
+
+html.light .theme-toggle-btn {
+  background: linear-gradient(135deg, #A7F3D0, #6EE7B7);
+  border-color: #10B981;
+}
+
+html:not(.light) .theme-toggle-btn {
+  background: linear-gradient(135deg, #0D281D, #06150E);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+html.light .theme-toggle-thumb {
+  transform: translateX(24px);
+  background: #FFFFFF;
+}
+
+html:not(.light) .theme-toggle-thumb {
+  transform: translateX(0);
+  background: #10B981;
+  color: #050B08;
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.animate-fadeIn   { animation: fadeIn 0.22s ease forwards; }
+.animate-slideUp  { animation: slideUp 0.28s ease forwards; }
+.animate-pulseRing { animation: pulseRing 1s ease-out infinite; }
+
+/* =============================================
+   RANGE INPUT STYLING
+   ============================================= */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-subtle);
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(55, 214, 245, 0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+html.light input[type="range"]::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(55, 214, 245, 0.3);
+}
+
+/* =============================================
+   SELECTION COLOR
+   ============================================= */
+::selection {
+  background: var(--accent-cyan);
+  color: #07111F;
+}
